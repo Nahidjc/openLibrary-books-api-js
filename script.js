@@ -1,7 +1,6 @@
 document.getElementById('search-btn').addEventListener('click', function () {
     let searchText = document.getElementById('search-text');
     let searchValue = searchText.value;
-    console.log(searchValue);
     searchFunction(searchValue);
 
 })
@@ -10,7 +9,7 @@ document.getElementById('search-btn').addEventListener('click', function () {
 // find books details  search by book name 
 const searchFunction = (searchValue) => {
     url = `http://openlibrary.org/search.json?q=${searchValue}`;
-    console.log(url);
+
     fetch(url)
         .then(response => response.json())
         .then(data => {
@@ -22,9 +21,28 @@ const searchFunction = (searchValue) => {
 
 // book details
 const showBook = books => {
-
+    let allBooksDetails = document.getElementById('all-books');
+    let singleBook = document.getElementById('single-book');
     books.forEach((book) => {
-        console.log(book.title);
+        console.log(book);
+        let imageId = book.cover_i;
+        // authorKey = book.author_name
+        // url = "https://openlibrary.org/authors/OL62134A.json"
+        let imageUrl = ` https://covers.openlibrary.org/b/id/${imageId}-M.jpg`
+
+        singleBook.innerHTML = `
+            <div class="card" style="width: 18rem;">
+            <img src="${imageUrl}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5>Title: ${book.title}</h5>
+                <p>Author: ${book.author_name}</p>
+                <small>Publisher: ${book.publisher}</small> <br>
+                <small>First Publish: ${book.first_publish_year}</small> <br>
+            </div>
+        </div>
+      
+            `
+        allBooksDetails.appendChild(singleBook);
 
     })
 }
