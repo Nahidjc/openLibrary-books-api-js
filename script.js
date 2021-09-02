@@ -15,33 +15,32 @@ const searchFunction = (searchValue) => {
         .then(response => response.json())
         .then(data => {
             let Data = data.numFound;
-            noDataFound = document.getElementById('not-found');
+            let noDataFound = document.getElementById('not-found');
+            let totalBooksSection = document.getElementById('total-books');
+            let detailsBooks = document.getElementById('all-books');
             // No Data Found Error Show
             if (Data === 0) {
 
                 noDataFound.innerHTML = `
                 <div class="m-auto col-md-6">
-
                 <div class="alert alert-danger text-center" role="alert">
                 There is No Books are Found
                  </div>
-                </div>
-               
-                                
+                </div>                   
                 `
+                detailsBooks.innerHTML = '';
+                totalBooksSection.innerHTML = '';
             } else {
 
                 noDataFound.innerHTML = '';
                 let totalBooks = data.numFound;
-                document.getElementById('total-books').innerText = `
+                totalBooksSection.innerText = `
                 Total Search Book : ${totalBooks}
                 `
                 showBook(data.docs);
             }
 
-        }).catch((error) => {
-            console.error('Error:', error);
-        });
+        })
 }
 
 // book details
