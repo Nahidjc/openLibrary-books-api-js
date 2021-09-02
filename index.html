@@ -12,6 +12,12 @@
 
 
     <title>Search Book from Open Library </title>
+
+    <style>
+        #spinner {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -34,6 +40,14 @@
 
 
     <section class="container">
+
+        <div class="d-flex justify-content-center">
+            <div class="spinner-border" id="spinner" style="width: 5rem; height: 5rem;" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+
+
         <div id="not-found" class="my-5">
 
         </div>

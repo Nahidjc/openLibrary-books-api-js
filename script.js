@@ -2,9 +2,17 @@ document.getElementById('search-btn').addEventListener('click', function () {
     let searchText = document.getElementById('search-text');
     let searchValue = searchText.value;
     searchText.value = ''
+    toggleSpinner('block');
     searchFunction(searchValue);
 
 })
+
+
+// show spinner
+
+const toggleSpinner = displaySpinner => {
+    document.getElementById('spinner').style.display = displaySpinner;
+}
 
 
 // find books details  search by book name 
@@ -20,7 +28,7 @@ const searchFunction = (searchValue) => {
             let detailsBooks = document.getElementById('all-books');
             // No Data Found Error Show
             if (Data === 0) {
-
+                toggleSpinner('none');
                 noDataFound.innerHTML = `
                 <div class="m-auto col-md-6">
                 <div class="alert alert-danger text-center" role="alert">
@@ -38,6 +46,8 @@ const searchFunction = (searchValue) => {
                 Total Search Book : ${totalBooks}
                 `
                 showBook(data.docs);
+                toggleSpinner('none');
+
             }
 
         })
