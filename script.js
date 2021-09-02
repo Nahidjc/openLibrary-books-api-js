@@ -9,7 +9,7 @@ document.getElementById('search-btn').addEventListener('click', function () {
 
 // find books details  search by book name 
 const searchFunction = (searchValue) => {
-    url = `http://openlibrary.org/search.json?q=${searchValue}`;
+    url = `https://openlibrary.org/search.json?q=${searchValue}`;
 
     fetch(url)
         .then(response => response.json())
